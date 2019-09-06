@@ -1,0 +1,49 @@
+# airbnbが定義するES5用のコーディング規約を利用する
+# https://github.com/airbnb/javascript/tree/es5-deprecated/es5
+extends: airbnb-base/legacy
+
+env:
+  # Node環境か
+  node:    false
+  # ブラウザで実行されるコードを静的検証するか
+  browser: true
+  # jQueryを利用するか
+  jquery:  true
+
+# グローバル変数はreadonly(書き込み禁止)ルール
+globals:
+  window:   readonly
+  document: readonly
+
+rules:
+  # 鯉のぼりスタイルを許容する
+  no-multi-spaces:
+    - error
+    - exceptions:
+        Property: true
+        ImportDeclaration: true
+        VariableDeclarator: true
+
+  key-spacing:
+    - error
+    - mode: minimum
+
+  # 波括弧のオブジェクトは一貫して整ってればよい
+  object-curly-newline:
+    - error
+    - consistent: true
+
+  # ifの終括弧に続けてelseを書かない
+  brace-style:
+    - error
+    - stroustrup
+    - allowSingleLine: true
+
+  # インデント
+  # メソッドチェーンはインデントしなくて良い
+  indent:
+    - error
+    - 2
+    -
+      MemberExpression: 0
+      SwitchCase: 1
